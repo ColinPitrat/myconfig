@@ -10,3 +10,4 @@ To configure a computer:
     git config core.worktree "../../"
     # Beware: this will overwrite existing configuration
     git reset --hard origin/master
+    echo "gitdir: `pwd`/.git" > ../.git
