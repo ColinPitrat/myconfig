@@ -1,0 +1,16 @@
+#!/bin/sh
+
+prevtouched=`stat -c %Y ~/.vimsaved`
+
+make
+while [ 1 ]
+do
+  lasttouched=`stat -c %Y ~/.vimsaved`
+  if [ "$lasttouched" != "$prevtouched" ]
+  then
+    prevtouched=$lasttouched
+    make
+  fi
+  sleep 1
+done
+

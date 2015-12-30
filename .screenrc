@@ -1,0 +1,22 @@
+startup_message off
+#windows
+#time
+defscrollback 10000
+
+# Avoid to let the buffer displayed after leaving vi, less etc ...
+altscreen on
+
+# Status line at the bottom
+hardstatus on
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]'
+
+# Deactivate visual bell
+vbell off
+
+layout new
+split
+screen 0
+focus bottom
+screen 1
+resize 10

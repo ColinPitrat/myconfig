@@ -1,0 +1,59 @@
+#
+# Options de shell
+#
+# >| doit etre utilises pour pouvoir ecraser un fichier deja existant ;
+# le fichier ne sera pas ecrase avec '>'
+setopt clobber
+# Ctrl+D est equivalent a 'logout'
+setopt no_ignore_eof
+# Affiche le code de sortie si different de '0'
+setopt print_exit_value
+# Desactive la correction de commande parce que ca m'enerve
+setopt no_correct
+setopt no_correct_all
+# Desactive l'expansion des * lors de la completion (ne marche pas si l'* est a la fin :()
+setopt glob_complete
+# Desactive l'arret de la completion sur les match exacts
+setopt no_rec_exact
+# Affiche immediatement une liste de choix lors d'une completion ambigue
+setopt no_list_ambiguous
+
+#
+# Alias
+#
+alias ls='ls --color'
+alias vi='vim'
+alias git='/nastools/git/bin/git'
+alias view_state='view_as_state | grep -v "| Batch |"'
+alias clone_head_pkg='hg clonept --integration -b HEAD -P'
+alias sshEC2='ssh ec2-107-22-65-11.compute-1.amazonaws.com'
+alias quota='/remote/tools/isilon/isiquota'
+
+#
+# Fonctions
+#
+function set_prompt()
+{
+   autoload -U colors
+   colors
+   local BLUE="%{$fg[blue]%}"
+   local RED="%{$fg[red]%}"
+   local NO_COLOUR="%{$reset_color%}"
+   export PROMPT="${BLUE}[$RED%D{%H:%M:%S}$BLUE] ${BLUE}[$NO_COLOUR%n@%M:%~${BLUE}] $NO_COLOUR\$ "
+}
+
+function winner_cvs() 
+{
+   cvs log $@ | grep author | sed 's/.*\(author:[^;]*;\).*/\1/' | sort | uniq -c | sort -n
+}
+
+set_prompt
+
+#
+# Divers
+#
+
+if [ "$TERM" != "screen" ]
+then
+  screen -RR
+fi
