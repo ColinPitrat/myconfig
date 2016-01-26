@@ -4,19 +4,19 @@ doBuild() {
   G="\e[1;32m"
   R="\e[1;31m"
   W="\e[1;37m"
-  (make && echo "${G} * Build OK * ${W}") || echo "${R} ! Build KO ! ${W}"
+  (make $@ && echo "${G} * Build OK * ${W}") || echo "${R} ! Build KO ! ${W}"
 }
 
 prevtouched=`stat -c %Y ~/.vimsaved`
 
-doBuild
+doBuild $@
 while [ 1 ]
 do
   lasttouched=`stat -c %Y ~/.vimsaved`
   if [ "$lasttouched" != "$prevtouched" ]
   then
     prevtouched=$lasttouched
-    doBuild
+    doBuild $@
   fi
   sleep 1
 done
