@@ -166,3 +166,17 @@ bar {
 }
 
 exec syndaemon -k -i 1 -d
+#############################
+# Launch applets at startup #
+#############################
+
+# Goobuntu indicator
+exec /usr/bin/python2.7 /usr/share/goobuntu-indicator/goobuntu_indicator.py
+# Sound applet (doesn't work outside of cinnamon)
+#exec /usr/lib/x86_64-linux-gnu/indicator-sound/indicator-sound-service
+# Network manager
+exec /usr/bin/nm-applet
+# Printing applet
+# /usr/bin/python /usr/share/system-config-printer/applet.py
+# Bluetooth applet
+# /usr/lib/x86_64-linux-gnu/indicator-bluetooth/indicator-bluetooth-service
