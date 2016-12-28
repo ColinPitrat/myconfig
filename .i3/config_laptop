@@ -41,7 +41,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10 && ./bin/xosd_backlight.sh
 #bindsym XF86Display
 #bindsym XF86Tools
 #bindsym XF86Search
-#bindsym XF86LaunchA
+bindsym XF86LaunchA exec ./bin/secure_shell.sh
 #bindsym XF86Explorer
 
 # change focus
