@@ -39,7 +39,7 @@ bindsym XF86AudioMicMute exec pactl set-source-mute 2 toggle &&./bin/xosd_mic.sh
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 && ./bin/xosd_backlight.sh
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 && ./bin/xosd_backlight.sh
 #bindsym XF86Display
-#bindsym XF86Tools
+bindsym XF86Tools exec ./bin/switch_kbd_layout.sh
 #bindsym XF86Search
 bindsym XF86LaunchA exec ./bin/secure_shell.sh
 #bindsym XF86Explorer
@@ -180,3 +180,5 @@ exec /usr/bin/nm-applet
 # /usr/bin/python /usr/share/system-config-printer/applet.py
 # Bluetooth applet
 # /usr/lib/x86_64-linux-gnu/indicator-bluetooth/indicator-bluetooth-service
+# Clipboard manager
+exec /usr/bin/diodon
