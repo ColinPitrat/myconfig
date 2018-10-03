@@ -7,6 +7,11 @@ status=`cat /sys/class/power_supply/BAT0/status`
 
 if [ $charge -lt 15 -a "$status" != "Charging" ]
 then
-	export DISPLAY=:0.0
-	zenity --warning --title "Fais gaffe !" --text "Bientôt plus de batterie mec !"
+  export DISPLAY=:0.0
+  zenity --warning --title "Fais gaffe !" --text "Bientôt plus de batterie mec !" &
+  mplayer /usr/share/sounds/KDE-Sys-App-Error-Serious-Very.ogg
+  sleep 5
+  mplayer /usr/share/sounds/KDE-Sys-App-Error-Serious-Very.ogg
+  sleep 5
+  mplayer /usr/share/sounds/KDE-Sys-App-Error-Serious-Very.ogg
 fi
