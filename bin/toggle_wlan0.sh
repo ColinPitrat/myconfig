@@ -17,7 +17,7 @@ fi
 to_kill=`ps aux | grep osd_cat | awk '{ print $2 }' | xargs`
 
 # Display the result
-osd_cat -d 1 -p middle -A center -T "WiFi: $wlan0_status" -c $OSDCOLOR -f *-*-*-*-*-*-*-32-* &
+osd_cat -d 1 -p middle -A center -T "WiFi: $wlan0_status" -c $OSDCOLOR -f *-*-*-*-*-*-*-24-* &
 sleep 0.2
 
 kill -9 $to_kill

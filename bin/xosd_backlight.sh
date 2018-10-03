@@ -20,7 +20,7 @@ to_kill=`ps aux | grep osd_cat | awk '{ print $2 }' | xargs`
 #killall osd_cat &> /dev/null
 
 # Display the result
-osd_cat -d 1 -p middle -A center -b percentage -P $blset -T "$text" -c $OSDCOLOR -f *-*-*-*-*-*-*-32-* &
+osd_cat -d 1 -p middle -A center -b percentage -P $blset -T "$text" -c $OSDCOLOR -f *-*-*-*-*-*-*-24-* &
 sleep 0.2
 
 kill -9 $to_kill
