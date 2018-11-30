@@ -29,6 +29,7 @@ set keymap vi-insert
 "\C-d": delete-char
 "\C-e": end-of-line
 "\C-f": forward-char
+"\C-h": yank-last-arg
 "\C-k": kill-line
 "\C-l": clear-screen
 "\C-n": next-history
