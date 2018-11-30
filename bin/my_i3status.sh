@@ -13,8 +13,10 @@ do
   mem_stanza=`make_stanza "mem", "M: $mem_usage%"`
   swap_usage=`echo 100-100*$(grep SwapFree /proc/meminfo | awk '{ print $2 }')/$(grep SwapTotal /proc/meminfo | awk '{ print $2 }') | bc`
   swap_stanza=`make_stanza "swap", "S: $swap_usage%"`
+  temperature=`sensors coretemp-isa-0000 | grep "Core 0" | awk '{ print $3 }'`
+  temp_stanza=`make_stanza "temp" "T: $temperature"`
   echo $line | \
     sed 's/\("full_text":"MTV: \)/"color":"#FFFF00",\1/' | \
     sed 's/\("full_text":"DUB: \)/"color":"#8080FF",\1/' | \
-    sed "s/\[{/\[${mem_stanza},${swap_stanza},{/"
+    sed "s/\[{/\[${temp_stanza},${mem_stanza},${swap_stanza},{/"
 done
