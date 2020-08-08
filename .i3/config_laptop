@@ -6,20 +6,22 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
 # clear in small sizes. However, if you need a lot of unicode glyphs or
 # right-to-left text rendering, you should instead use pango for rendering and
 # chose a FreeType font, such as:
-# font pango:DejaVu Sans Mono 10
+#font pango:DejaVu Sans Mono 9
+font pango:monospace 9
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Shift+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal -- bin/tmux.sh
 bindsym $mod+c exec google-chrome
-bindsym Control+Mod1+l exec i3lock -i Pictures/lockscreen.png
+bindsym Control+Mod1+l exec i3lock -i Pictures/lockscreen.png && sleep 1 && xset dpms force off
 
 # kill focused window
 bindsym $mod+Shift+a kill
@@ -32,17 +34,37 @@ bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # function keys
+# Fn+F1 - Mute
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle && ./bin/xosd_volume.sh
+bindsym $mod+F1 exec pactl set-sink-mute 0 toggle && ./bin/xosd_volume.sh
+# Fn+F2 - Lower Volume
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -10% && ./bin/xosd_volume.sh
+bindsym $mod+F2 exec pactl set-sink-volume 0 -10% && ./bin/xosd_volume.sh
+# Fn+F3 - Raise Volume
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +10% && ./bin/xosd_volume.sh
+bindsym $mod+F3 exec pactl set-sink-volume 0 +10% && ./bin/xosd_volume.sh
+# Fn+F4 - Mic Mute
 bindsym XF86AudioMicMute exec pactl set-source-mute 1 toggle &&./bin/xosd_mic.sh
+bindsym $mod+F4 exec pactl set-source-mute 1 toggle &&./bin/xosd_mic.sh
+# Fn+F5 - Brightness Down
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 && ./bin/xosd_backlight.sh
+bindsym $mod+F5 exec xbacklight -dec 10 && ./bin/xosd_backlight.sh
+# Fn+F6 - Brightness Up
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10 && ./bin/xosd_backlight.sh
+bindsym $mod+F6 exec xbacklight -inc 10 && ./bin/xosd_backlight.sh
 #bindsym XF86Display
+# Fn+F9 - Change keyboard layout
 bindsym XF86Tools exec ./bin/switch_kbd_layout.sh
-#bindsym XF86Search
-bindsym XF86LaunchA exec ./bin/secure_shell.sh
-#bindsym XF86Explorer
+bindsym $mod+F9 exec ./bin/switch_kbd_layout.sh
+# Fn+F10 - Change resolution
+bindsym XF86Search exec ./bin/toggle_resolution.sh
+bindsym $mod+F10 exec ./bin/toggle_resolution.sh
+# Fn+F11 - Suspend
+bindsym XF86LaunchA exec i3lock -i Pictures/lockscreen.png && /bin/systemctl suspend
+bindsym $mod+F11 exec i3lock -i Pictures/lockscreen.png && /bin/systemctl suspend
+# Fn+F12 - Secure Shell
+#bindsym XF86Explorer exec ./bin/secure_shell.sh
+#bindsym $mod+F12 exec ./bin/secure_shell.sh
 
 # change focus
 bindsym $mod+h focus left
