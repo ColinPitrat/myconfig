@@ -101,6 +101,17 @@ function! HGannotate(hgversion)
     set nomodified
 endfunction
 
+"Create function GitDiff with svn cat -r <N> <file>
+command -nargs=* GitDiff silent call GitDiff("<args>")
+function! GitDiff(...)
+        let filename = bufname("%")
+        execute "vertical diffsplit new"
+        let git_cmd="%!git show HEAD:./" . filename
+        echom "mWill execute: " . git_cmd
+        execute git_cmd
+        execute "diffupdate"
+endfunction
+
 command HGlog silent call HGlog()
 function! HGlog()
     let filename=bufname("%")
@@ -232,3 +243,11 @@ let g:ycm_warning_symbol = '>'
 
 " Set Ctrl-u to uppercase the current word (usefull for macros)
 inoremap <c-u> <esc>mpllbmbhelme`bgU`e`pa
+
+set number relativenumber
+
+" Spell check
+set spelllang=en
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
+autocmd FileType text setlocal spell
